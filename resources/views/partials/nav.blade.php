@@ -90,7 +90,7 @@
                 <li class="user-profile header-notification">
                     <a href="#!">
                         <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                        <span>John Doe</span>
+                        <span>{{ Auth::user()->name }}</span>
                         <i class="ti-angle-down"></i>
                     </a>
                     <ul class="show-notification profile-notification">
@@ -111,9 +111,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="auth-normal-sign-in.html">
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
                             <i class="ti-layout-sidebar-left"></i> Logout
-                        </a>
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                 </li>
