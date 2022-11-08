@@ -30,20 +30,16 @@
                             <hr/>
                             <div class="input-group">
                                 <input name="email" type="email" class="form-control @error('email') form-control-danger @enderror" placeholder="Your Email Address" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                @error('email')
-                                <div class="col-form-label">
-                                    {{ $message }}
-                                </div>
-                                @enderror
                             </div>
+                            @error('email')
+                                <label class="md-line label-danger"><strong>{{ $message }}</strong></label>
+                            @enderror
                             <div class="input-group">
                                 <input name="password" type="password" class="form-control @error('password') form-control-danger @enderror" placeholder="Password">
-                                @error('password')
-                                    <div class="col-form-label">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
                             </div>
+                            @error('password')
+                            <label class="md-line label-danger"><strong>{{ $message }}</strong></label>
+                            @enderror
                             <div class="row m-t-25 text-left">
                                 <div class="col-sm-7 col-xs-12">
                                     <div class="checkbox-fade fade-in-primary">
