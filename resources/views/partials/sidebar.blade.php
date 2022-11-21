@@ -2,7 +2,7 @@
     <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
     <div class="pcoded-inner-navbar main-menu">
         
-        <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
+        <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Data Utama</div>
         <ul class="pcoded-item pcoded-left-item">
             <li class="{{ Request::is('dashboard') ? 'active': ''}}">
                 <a href="/dashboard">
@@ -11,9 +11,16 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
+            <li class="{{ Request::is('customer*') ? 'active': ''}}">
+                <a href="/customer">
+                    <span class="pcoded-micon"><i class="ti-id-badge"></i><b>D</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Daftar Pelanggan</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
             <li class="{{ Request::is('packet*') ? 'active': ''}}">
                 <a href="/packet">
-                    <span class="pcoded-micon"><i class="ti-ticket"></i><b>D</b></span>
+                    <span class="pcoded-micon"><i class="ti-crown"></i><b>D</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Paket Langganan</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
