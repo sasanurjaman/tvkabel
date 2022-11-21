@@ -1,4 +1,6 @@
 @extends('layouts.template')
+@section('title', 'Dashboard')
+
 @section('contents')
     <div class="pcoded-content">
         <div class="pcoded-inner-content">
