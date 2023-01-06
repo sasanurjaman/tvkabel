@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Packet;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -10,11 +11,12 @@ class CustomerController extends Controller
     public function validateData(Request $request)
     {
         $validateData = $request->validate([
+            'packet_id' => 'required',
             'customerCode' => 'required|max:8',
             'customerName' => 'required|max:50',
             'customerAddress' => 'required',
             'customerEmail' => 'required|email:rfc,dns|max:50',
-            'customerPhone' => 'required|max:20'
+            'customerPhone' => 'required|max:20',
         ]);
 
         return $validateData;
@@ -27,7 +29,7 @@ class CustomerController extends Controller
     public function index()
     {
         return view('customer.index', [
-            'customers' => Customer::all()->sortBy('customerName')
+            'customers' => Customer::all()->sortBy('customerName'),
         ]);
     }
 
@@ -38,7 +40,9 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customer.create');
+        return view('customer.create', [
+            'packets' => Packet::all()->sortBy('packetName'),
+        ]);
     }
 
     /**
@@ -53,7 +57,10 @@ class CustomerController extends Controller
 
         Customer::create($validateData);
 
-        return redirect('/customer')->with('success', "Pelanggan $request->customerName Berhasil Ditambahkan!");
+        return redirect('/customer')->with(
+            'success',
+            "Pelanggan $request->customerName Berhasil Ditambahkan!"
+        );
     }
 
     /**
@@ -65,7 +72,7 @@ class CustomerController extends Controller
     public function show(Customer $customer)
     {
         return view('customer.show', [
-            'customer' => $customer
+            'customer' => $customer,
         ]);
     }
 
@@ -78,7 +85,7 @@ class CustomerController extends Controller
     public function edit(Customer $customer)
     {
         return view('customer.edit', [
-            'customer' => $customer
+            'customer' => $customer,
         ]);
     }
 
@@ -95,7 +102,10 @@ class CustomerController extends Controller
 
         Customer::where('id', $customer->id)->update($validateData);
 
-        return redirect('/customer')->with('success', "Pelanggan $request->customerName berhasil diubah!");
+        return redirect('/customer')->with(
+            'success',
+            "Pelanggan $request->customerName berhasil diubah!"
+        );
     }
 
     /**
@@ -108,6 +118,9 @@ class CustomerController extends Controller
     {
         $customer->delete();
 
-        return back()->with('success', "Pelanggan $customer->customerName berhasil dihapus!");
+        return back()->with(
+            'success',
+            "Pelanggan $customer->customerName berhasil dihapus!"
+        );
     }
 }

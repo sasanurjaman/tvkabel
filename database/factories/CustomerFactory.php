@@ -18,6 +18,7 @@ class CustomerFactory extends Factory
     public function definition()
     {
         return [
+            'packet_id' => mt_rand(1, 3),
             'customerCode' => Str::random(8),
             'customerName' => fake()->name(),
             'customerAddress' => fake()->address(),

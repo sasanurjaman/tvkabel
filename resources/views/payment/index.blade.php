@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@section('title', 'Daftar Pelanggan')
+@section('title', 'Tagihan Bulanan')
 
 @section('contents')
     <div class="pcoded-content">
@@ -11,14 +11,14 @@
                     <!-- Page-header start -->
                     <div class="page-header card">
                         <div class="card-block">
-                            <h5 class="m-b-10">Pelanggan</h5>
-                            <p class="text-muted m-b-10">Daftar pelanggan Terdatar</p>
+                            <h5 class="m-b-10">Tagihan Bulanan</h5>
+                            <p class="text-muted m-b-10">Form Tagihan Bulanan</p>
                             <ul class="breadcrumb-title b-t-default p-t-10">
                                 <li class="breadcrumb-item">
                                     <a href="/dashboard"> <i class="fa fa-home"></i> </a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="/customer">Daftar Pelanggan</a>
+                                    <a href="/payment">Tagihan Bulanan</a>
                                 </li>
                             </ul>
                         </div>
@@ -40,11 +40,8 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="float-left">
-                                <h5>Tabel Pelanggan</h5>
-                                <span>Tabel Daftar Pelanggan</span>
-                            </div>
-                            <div class="float-right mr-3 mt-4">
-                                <a href="customer/create" type="button" class="btn btn-grd-primary" ><i class="ti-plus"></i>Tambah Pelanggan</a>
+                                <h5>Tabel Tagihan</h5>
+                                <span>Tabel Daftar Tagihan Pelanggan</span>
                             </div>
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
@@ -62,32 +59,46 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Kode Pelanggan</th>
                                             <th>Nama Pelanggan</th>
-                                            <th>No Telp</th>
-                                            <th>#</th>
+                                            <th>Paket Langganan</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($customers as $customer)
+                                        @foreach ($payments as $payment)
                                             <tr>
                                                 <th scope="row">{{ $loop->iteration}}</th>
-                                                <td>{{ $customer->customerCode }}</td>
-                                                <td>{{ $customer->customerName }}</td>
-                                                <td>{{ $customer->customerPhone }}</td>
+                                                <td>{{ $payment['customerName'] }}</td>
+                                                <td>{{ $payment['customerPacket'] }}</td>
                                                 <td>
-                                                    <a href="/customer/{{ $customer->id}}" class="badge badge-info" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Detail">
-                                                        <i class="ti-eye"></i>
-                                                    </a>
-                                                    <a href="/customer/{{ $customer->id}}/edit" class="badge badge-warning" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Edit">
-                                                        <i class="ti-pencil"></i>
-                                                    </a>
-                                                    <form action="{{ route('customer.destroy', [$customer->id]) }}" method="POST" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                        <button class="badge badge-danger border-0" onclick="return confirm('Apakah yakin menghapus paket {{ $customer->customerName }}')" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Hapus"><i class="ti-eraser"></i></button>
-                                                    </form>
+                                                    @if ($payment['jan'] == 0)
+                                                        <a href="#" class="badge badge-danger"><i class="ti-info"></i></a>
+                                                    @else
+                                                        <label class="badge badge-success"><i class="ti-check"></i></label>
+                                                    @endif
                                                 </td>
+                                                <td>{{ $payment['feb'] }}</td>
+                                                <td>{{ $payment['mart'] }}</td>
+                                                <td>{{ $payment['apr'] }}</td>
+                                                <td>{{ $payment['mey'] }}</td>
+                                                <td>{{ $payment['jun'] }}</td>
+                                                <td>{{ $payment['jul'] }}</td>
+                                                <td>{{ $payment['augs'] }}</td>
+                                                <td>{{ $payment['sept'] }}</td>
+                                                <td>{{ $payment['okt'] }}</td>
+                                                <td>{{ $payment['nov'] }}</td>
+                                                <td>{{ $payment['des'] }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

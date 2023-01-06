@@ -89,6 +89,17 @@
                                 @error('customerPhone')
                                     <label class="md-line label-danger"><strong>{{ $message }}</strong></label>
                                 @enderror
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Paket Langganan</label>
+                                    <div class="col-sm-10">
+                                        <select name="packet_id" class="form-control">
+                                            <option value="opt1">Pilih Paket Langganan</option>
+                                            @foreach ($packets as $packet)
+                                                <option value="{{ $packet->id}}">{{ $packet->packetName}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                                 <button type="submit" class="btn btn-grd-info ">Tambah Pelanggan</button>
                             </form>
                         </div>

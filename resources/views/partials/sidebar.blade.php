@@ -25,9 +25,25 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
-        
         </ul>
 
+        <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Pembayaran</div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="{{ Request::is('payment*') ? 'active': ''}}">
+                <a href="/payment">
+                    <span class="pcoded-micon"><i class="ti-calendar"></i><b>D</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Tagihan Bulanan</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class="{{ Request::is('note*') ? 'active': ''}}">
+                <a href="/dashboard">
+                    <span class="pcoded-micon"><i class="ti-files"></i><b>D</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Pembukuan</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.other">Other</div>
         <ul class="pcoded-item pcoded-left-item">
             <li class="pcoded-hasmenu ">

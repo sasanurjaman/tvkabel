@@ -10,4 +10,9 @@ class Packet extends Model
     use HasFactory;
 
     protected $guarded = [''];
+
+    public function payment()
+    {
+        return $this->hasManyThrough(Payment::class, Customer::class);
+    }
 }
